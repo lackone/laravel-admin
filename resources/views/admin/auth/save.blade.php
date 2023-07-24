@@ -14,7 +14,7 @@
                     <input type="text" class="form-control" id="title" name="title" value="{{ $auth['title'] }}">
                 </div>
                 <div class="mb-3">
-                    @include('admin.common.radio', ['label' => '类型', 'name' => 'type', 'data' => $auth['type'], 'list' => \App\Models\AdminAuth::$typeList])
+                    @include('admin.common.radio', ['label' => '类型', 'name' => 'type', 'data' => $auth['type'], 'list' => \App\Models\AdminAuth::$typeList, 'default' => \App\Models\AdminAuth::TYPE_BUTTON])
                 </div>
                 <div class="mb-3">
                     @include('admin.common.select', ['label' => '父级', 'name' => 'pid', 'data' => $auth['pid'], 'list' => $auth_tree])
@@ -24,7 +24,7 @@
                     <input type="text" class="form-control" id="icon" name="icon" value="{{ $auth['icon'] }}">
                 </div>
                 <div class="mb-3">
-                    @include('admin.common.radio', ['label' => '状态', 'name' => 'status', 'data' => $auth['status'], 'list' => \App\Models\AdminAuth::$statusList])
+                    @include('admin.common.radio', ['label' => '状态', 'name' => 'status', 'data' => $auth['status'], 'list' => \App\Models\AdminAuth::$statusList, 'default' => \App\Models\AdminAuth::STATUS_ENABLE])
                 </div>
                 <div class="mb-3">
                     <label for="sort" class="form-label">排序(越小越前)</label>
@@ -37,9 +37,9 @@
 @endsection
 
 @section('js')
-    <script src="{{ adminAsset('admin/lib/formvalidation/js/formValidation.js') }}"></script>
-    <script src="{{ adminAsset('admin/lib/formvalidation/js/framework/bootstrap.js') }}"></script>
-    <script src="{{ adminAsset('admin/lib/formvalidation/js/language/zh_CN.js') }}"></script>
+    <script src="{{ adminAsset('admins/lib/formvalidation/js/formValidation.js') }}"></script>
+    <script src="{{ adminAsset('admins/lib/formvalidation/js/framework/bootstrap.js') }}"></script>
+    <script src="{{ adminAsset('admins/lib/formvalidation/js/language/zh_CN.js') }}"></script>
 @endsection
 
 @section('myjs')

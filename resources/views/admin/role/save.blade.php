@@ -1,7 +1,7 @@
 @extends('admin.layouts.sub')
 
 @section('css')
-    <link rel="stylesheet" href="{{ adminAsset('admin/lib/@ztree/ztree_v3/css/zTreeStyle/zTreeStyle.css') }}">
+    <link rel="stylesheet" href="{{ adminAsset('admins/lib/@ztree/ztree_v3/css/zTreeStyle/zTreeStyle.css') }}">
 @endsection
 
 @section('content')
@@ -10,7 +10,7 @@
             <form id="form" method="post" action="{{ route('admin.role.save', $role['id']) }}">
                 @csrf
                 <div class="mb-3">
-                    <label for="name" class="form-label">名称</label>
+                    <label for="name" class="form-label">角色名称</label>
                     <input type="text" class="form-control" id="name" name="name" value="{{ $role['name'] }}">
                 </div>
                 <div class="mb-3">
@@ -22,10 +22,10 @@
                 </div>
                 <div class="mb-3">
                     <label for="remark" class="form-label">备注</label>
-                    <input type="text" class="form-control" id="remark" name="remark" value="{{ $role['remark'] }}">
+                    <textarea class="form-control" name="remark" id="remark" rows="3">{{ $role['remark'] }}</textarea>
                 </div>
                 <div class="mb-3">
-                    @include('admin.common.radio', ['label' => '状态', 'name' => 'status', 'data' => $role['status'], 'list' => \App\Models\AdminRole::$statusList])
+                    @include('admin.common.radio', ['label' => '状态', 'name' => 'status', 'data' => $role['status'], 'list' => \App\Models\AdminRole::$statusList, 'default' => \App\Models\AdminRole::STATUS_ENABLE])
                 </div>
                 <button type="submit" class="btn btn-primary">保存</button>
             </form>
@@ -34,7 +34,7 @@
 @endsection
 
 @section('js')
-    <script src="{{ adminAsset('admin//lib/@ztree/ztree_v3/js/jquery.ztree.all.min.js') }}"></script>
+    <script src="{{ adminAsset('admins/lib/@ztree/ztree_v3/js/jquery.ztree.all.min.js') }}"></script>
 @endsection
 
 @section('myjs')

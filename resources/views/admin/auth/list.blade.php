@@ -1,7 +1,7 @@
 @extends('admin.layouts.sub')
 
 @section('css')
-    <link rel="stylesheet" href="{{ adminAsset('admin/lib/@ztree/ztree_v3/css/zTreeStyle/zTreeStyle.css') }}">
+    <link rel="stylesheet" href="{{ adminAsset('admins/lib/@ztree/ztree_v3/css/zTreeStyle/zTreeStyle.css') }}">
 @endsection
 
 @section('content')
@@ -25,7 +25,7 @@
 @endsection
 
 @section('js')
-    <script src="{{ adminAsset('admin//lib/@ztree/ztree_v3/js/jquery.ztree.all.min.js') }}"></script>
+    <script src="{{ adminAsset('admins/lib/@ztree/ztree_v3/js/jquery.ztree.all.min.js') }}"></script>
 @endsection
 
 @section('myjs')

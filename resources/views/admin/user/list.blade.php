@@ -93,7 +93,7 @@
                                     <div class="th-inner">头像/昵称/姓名</div>
                                 </th>
                                 <th>
-                                    <div class="th-inner">角色</div>
+                                    <div class="th-inner">所属角色</div>
                                 </th>
                                 <th>
                                     <div class="th-inner">手机号</div>
@@ -106,6 +106,9 @@
                                 </th>
                                 <th>
                                     <div class="th-inner">超级管理员</div>
+                                </th>
+                                <th>
+                                    <div class="th-inner">备注</div>
                                 </th>
                                 <th>
                                     <div class="th-inner">创建时间/更新时间</div>
@@ -124,7 +127,7 @@
                                     <td>{{ $value['id'] }}</td>
                                     <td>{{ $value['account'] }}</td>
                                     <td>
-                                        <img src="{{ $value['avatar'] }}" class="avatar">
+                                        <img src="{{ $value['avatar'] ?: adminAsset('admins/img/avatar.png') }}" class="avatar">
                                         <br>
                                         {{ $value['nick'] }}
                                         <br>
@@ -141,6 +144,7 @@
                                     <td>{{ $value['email'] }}</td>
                                     <td>{!! \App\Models\Admin::$statusHtmlList[$value['status']] !!}</td>
                                     <td>{{ \App\Models\Admin::$isSuperList[$value['is_super']] }}</td>
+                                    <td>{{ $value['remark'] }}</td>
                                     <td>
                                         {{ $value['created'] ?: '-' }}
                                         <br>

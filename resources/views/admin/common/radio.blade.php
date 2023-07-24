@@ -5,7 +5,7 @@
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="{{ $name }}" id="{{ $name }}{{ $key }}"
                        value="{{ $key }}"
-                    {{ $key == $data ? 'checked' : '' }}>
+                    {{ ((isset($data) && $key == $data) || (!isset($data) && $key == $default)) ? 'checked' : '' }}>
                 <label class="form-check-label" for="{{ $name }}{{ $key }}">{{ $value }}</label>
             </div>
         @endforeach

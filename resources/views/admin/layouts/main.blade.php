@@ -4,15 +4,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="icon" href="{{ adminAsset('admin/img/favicon-32x32.png') }}" sizes="32x32" type="image/png">
-    <link rel="icon" href="{{ adminAsset('admin/img/favicon-16x16.png') }}" sizes="16x16" type="image/png">
+    <link rel="icon" href="{{ adminAsset('admins/img/favicon-32x32.png') }}" sizes="32x32" type="image/png">
+    <link rel="icon" href="{{ adminAsset('admins/img/favicon-16x16.png') }}" sizes="16x16" type="image/png">
     <meta name="keywords" content="{{ config('admin.keywords') }}">
     <meta name="description" content="{{ config('admin.description') }}">
-    <link rel="stylesheet" href="{{ adminAsset('admin/lib/bootstrap-icons/font/bootstrap-icons.min.css') }}">
-    <link rel="stylesheet" href="{{ adminAsset('admin/lib/bootstrap/dist/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ adminAsset('admin/lib/overlayscrollbars/styles/overlayscrollbars.min.css') }}">
+    <link rel="stylesheet" href="{{ adminAsset('admins/lib/bootstrap-icons/font/bootstrap-icons.min.css') }}">
+    <link rel="stylesheet" href="{{ adminAsset('admins/lib/bootstrap/dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ adminAsset('admins/lib/overlayscrollbars/styles/overlayscrollbars.min.css') }}">
     @yield('css')
-    <link rel="stylesheet" href="{{ adminAsset('admin/css/bootstrap-admin.min.css') }}">
+    <link rel="stylesheet" href="{{ adminAsset('admins/css/bootstrap-admin.min.css') }}">
     @yield('mycss')
     <title>{{ config('admin.title') }}</title>
 </head>
@@ -32,13 +32,13 @@
 <!--版权信息-->
 @include('admin.common.footer')
 
-<script src="{{ adminAsset('admin/lib/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
-<script src="{{ adminAsset('admin/lib/jquery/dist/jquery.min.js') }}"></script>
-<script src="{{ adminAsset('admin/lib/overlayscrollbars/browser/overlayscrollbars.browser.es6.min.js') }}"></script>
-<script src="{{ adminAsset('admin/lib/bootstrap-quicktab/dist/js/bootstrap-quicktab.min.js') }}"></script>
+<script src="{{ adminAsset('admins/lib/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ adminAsset('admins/lib/jquery/dist/jquery.min.js') }}"></script>
+<script src="{{ adminAsset('admins/lib/overlayscrollbars/browser/overlayscrollbars.browser.es6.min.js') }}"></script>
+<script src="{{ adminAsset('admins/lib/bootstrap-quicktab/dist/js/bootstrap-quicktab.min.js') }}"></script>
 @yield('js')
-<script src="{{ adminAsset('admin/js/bootstrap-admin.min.js') }}"></script>
-<script src="{{ adminAsset('admin/js/app.js') }}"></script>
+<script src="{{ adminAsset('admins/js/bootstrap-admin.min.js') }}"></script>
+<script src="{{ adminAsset('admins/js/app.js') }}"></script>
 @yield('myjs')
 <script>
     $(document).ready(function () {

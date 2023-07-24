@@ -8,7 +8,7 @@
                 <div class="bsa-error-code">
                     403
                 </div>
-                <div class="bsa-error-text">{{ $msg }}</div>
+                <div class="bsa-error-text">{{ $msg }} [<a href="{{ route('admin.logout') }}">退出</a>]</div>
             </div>
         </div>
     </div>

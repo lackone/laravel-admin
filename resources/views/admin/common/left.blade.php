@@ -2,7 +2,7 @@
     <div class="card border-0 h-100">
         <!--  侧边栏头部(用于展示品牌logo)  -->
         <div class="card-header bg-body d-flex align-items-center flex-shrink-0">
-            <img src="{{ adminAsset('admin/img/favicon-32x32.png') }}" class="bsa-logo-icon" alt="logo-icon">
+            <img src="{{ adminAsset('admins/img/favicon-32x32.png') }}" class="bsa-logo-icon" alt="logo-icon">
             <div class="bsa-logo-text ms-2 bsa-ellipsis-2">后台管理系统</div>
         </div>
         <!--  侧边栏身体部分(用于主要的侧边栏菜单)  -->

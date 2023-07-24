@@ -1,6 +1,6 @@
-<link rel="stylesheet" href="{{ adminAsset('admin/lib/croppie/croppie.css') }}">
+<link rel="stylesheet" href="{{ adminAsset('admins/lib/croppie/croppie.css') }}">
 
-<img src="{{ $value ?: '/admin/img/avatar.jpg' }}" alt="Admin"
+<img src="{{ $value ?: '/admins/img/avatar.png' }}" alt="Admin"
      class="rounded-circle bsa-wh-100 bsa-cursor-pointer"
      data-bs-toggle="modal"
      data-bs-target="#avatarModal" id="avatar">
@@ -24,10 +24,10 @@
                     <div class="col d-none d-sm-block">
                         <div class="d-flex flex-column align-items-center ">
                             <span class="">预览</span>
-                            <img id="img1" src="{{ $value ?: '/admin/img/avatar.jpg' }}"
+                            <img id="img1" src="{{ $value ?: '/admins/img/avatar.png' }}"
                                  class="mt-3 rounded-circle bsa-wh-100">
                             <span class=" mt-3">100x100</span>
-                            <img id="img2" src="{{ $value ?: '/admin/img/avatar.jpg' }}"
+                            <img id="img2" src="{{ $value ?: '/admins/img/avatar.png' }}"
                                  class="mt-3 rounded-circle bsa-wh-50">
                             <span class="">50x50</span>
                         </div>
@@ -53,7 +53,7 @@
     </div>
 </div>
 
-<script src="{{ adminAsset('admin/lib/croppie/croppie.min.js') }}"></script>
+<script src="{{ adminAsset('admins/lib/croppie/croppie.min.js') }}"></script>
 <script>
     //实例化头像裁剪插件
     let croppie = new Croppie(document.querySelector('#croppie-wraper'), {

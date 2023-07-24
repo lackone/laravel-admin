@@ -6,7 +6,7 @@
             <form id="form" method="post" action="{{ route('admin.user.save', $admin['id']) }}">
                 @csrf
                 <div class="mb-3">
-                    <label for="account" class="form-label">账号</label>
+                    <label for="account" class="form-label">账号(登录使用)</label>
                     <input type="text" class="form-control" id="account" name="account" value="{{ $admin['account'] }}">
                 </div>
                 <div class="mb-3">
@@ -25,7 +25,7 @@
                     </div>
                 </div>
                 <div class="mb-3">
-                    @include('admin.common.radio', ['label' => '性别', 'name' => 'sex', 'data' => $admin['sex'], 'list' => \App\Models\Admin::$sexList])
+                    @include('admin.common.radio', ['label' => '性别', 'name' => 'sex', 'data' => $admin['sex'], 'list' => \App\Models\Admin::$sexList, 'default' => \App\Models\Admin::SEX_UNKNOWN])
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">密码</label>
@@ -48,10 +48,18 @@
                     <input type="text" class="form-control" id="weixin" name="weixin" value="{{ $admin['weixin'] }}">
                 </div>
                 <div class="mb-3">
-                    @include('admin.common.radio', ['label' => '超级管理员', 'name' => 'is_super', 'data' => $admin['is_super'], 'list' => \App\Models\Admin::$isSuperList])
+                    @include('admin.common.radio', ['label' => '超级管理员', 'name' => 'is_super', 'data' => $admin['is_super'], 'list' => \App\Models\Admin::$isSuperList, 'default' => \App\Models\Admin::IS_SUPER_NO])
                 </div>
                 <div class="mb-3">
-                    @include('admin.common.radio', ['label' => '状态', 'name' => 'status', 'data' => $admin['status'], 'list' => \App\Models\Admin::$statusList])
+                    @include('admin.common.radio', ['label' => '状态', 'name' => 'status', 'data' => $admin['status'], 'list' => \App\Models\Admin::$statusList, 'default' => \App\Models\Admin::STATUS_ENABLE])
+                </div>
+                <div class="mb-3">
+                    <label for="address" class="form-label">地址</label>
+                    <textarea class="form-control" name="address" id="address" rows="3">{{ $admin['address'] }}</textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="remark" class="form-label">备注</label>
+                    <textarea class="form-control" name="remark" id="remark" rows="3">{{ $admin['remark'] }}</textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">保存</button>
             </form>

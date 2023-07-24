@@ -53,7 +53,7 @@
     <li class="dropdown">
         <div class="bsa-header-item" data-bs-toggle="dropdown">
             <div class="bsa-user-area">
-                <img src="{{ session('admin_info.avatar') ?: adminAsset('admin/img/avatar.jpg') }}" class="bsa-user-avatar" alt="用户头像">
+                <img src="{{ session('admin_info.avatar') ?: adminAsset('admins/img/avatar.png') }}" class="bsa-user-avatar" alt="用户头像">
                 <div class="bsa-user-details">
                     <div class="bsa-ellipsis-1 bsa-fs-15">{{ session('admin_info.real_name') ?: session('admin_info.account') }}</div>
                     <!-- 管理员角色RBAC权限设计时可用(不需要可删除,上面的用户名可自动垂直居中)  -->

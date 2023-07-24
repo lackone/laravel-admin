@@ -57,11 +57,15 @@ class IndexController extends Controller
     /**
      * 登出
      */
-    public function logout()
+    public function logout(Request $request)
     {
         session()->flush();
 
-        return success();
+        if ($request->ajax()) {
+            return success();
+        }
+
+        return redirect(route('admin.login'));
     }
 
     /**

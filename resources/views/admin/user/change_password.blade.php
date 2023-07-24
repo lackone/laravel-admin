@@ -24,9 +24,9 @@
 @endsection
 
 @section('js')
-    <script src="{{ adminAsset('admin/lib/formvalidation/js/formValidation.js') }}"></script>
-    <script src="{{ adminAsset('admin/lib/formvalidation/js/framework/bootstrap.js') }}"></script>
-    <script src="{{ adminAsset('admin/lib/formvalidation/js/language/zh_CN.js') }}"></script>
+    <script src="{{ adminAsset('admins/lib/formvalidation/js/formValidation.js') }}"></script>
+    <script src="{{ adminAsset('admins/lib/formvalidation/js/framework/bootstrap.js') }}"></script>
+    <script src="{{ adminAsset('admins/lib/formvalidation/js/language/zh_CN.js') }}"></script>
 @endsection
 
 @section('myjs')

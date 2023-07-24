@@ -141,6 +141,7 @@ class UserController extends Controller
             }
 
             AdminRoleAssoc::where('admin_id', $admin['id'])->delete();
+
             $insert = [];
             if ($params['role_ids']) {
                 $now = time();

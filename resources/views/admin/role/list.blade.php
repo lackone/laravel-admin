@@ -78,7 +78,7 @@
                                     <div class="th-inner">ID</div>
                                 </th>
                                 <th>
-                                    <div class="th-inner">名称</div>
+                                    <div class="th-inner">角色名称</div>
                                 </th>
                                 <th>
                                     <div class="th-inner">状态</div>

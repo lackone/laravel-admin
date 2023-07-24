@@ -11,6 +11,9 @@ Route::group([
     //登录
     Route::any('/login', 'IndexController@login')->name('login');
 
+    //登出
+    Route::any('/logout', 'IndexController@logout')->name('logout');
+
     //错误页
     Route::any('/forbidden', 'IndexController@forbidden')->name('forbidden');
 
@@ -25,9 +28,6 @@ Route::group([
 
         //欢迎
         Route::any('/welcome', 'IndexController@welcome')->name('welcome');
-
-        //登出
-        Route::any('/logout', 'IndexController@logout')->name('logout');
 
         //修改密码
         Route::any('/changePassword', 'UserController@changePassword')->name('changePassword');

@@ -4,24 +4,24 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="icon" href="{{ adminAsset('admin/img/favicon-32x32.png') }}" sizes="32x32" type="image/png">
-    <link rel="icon" href="{{ adminAsset('admin/img/favicon-16x16.png') }}" sizes="16x16" type="image/png">
+    <link rel="icon" href="{{ adminAsset('admins/img/favicon-32x32.png') }}" sizes="32x32" type="image/png">
+    <link rel="icon" href="{{ adminAsset('admins/img/favicon-16x16.png') }}" sizes="16x16" type="image/png">
     <meta name="keywords" content="{{ config('admin.keywords') }}">
     <meta name="description" content="{{ config('admin.description') }}">
-    <link rel="stylesheet" href="{{ adminAsset('admin/lib/bootstrap-icons/font/bootstrap-icons.min.css') }}">
-    <link rel="stylesheet" href="{{ adminAsset('admin/lib/bootstrap/dist/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ adminAsset('admin/lib/bootstrap-table/dist/bootstrap-table.min.css') }}">
+    <link rel="stylesheet" href="{{ adminAsset('admins/lib/bootstrap-icons/font/bootstrap-icons.min.css') }}">
+    <link rel="stylesheet" href="{{ adminAsset('admins/lib/bootstrap/dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ adminAsset('admins/lib/bootstrap-table/dist/bootstrap-table.min.css') }}">
     <link rel="stylesheet"
-          href="{{ adminAsset('admin/lib/bootstrap-table/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.min.css') }}">
+          href="{{ adminAsset('admins/lib/bootstrap-table/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.min.css') }}">
     <link rel="stylesheet"
-          href="{{ adminAsset('admin/lib/@eonasdan/tempus-dominus/dist/css/tempus-dominus.min.css') }}"/>
-    <link rel="stylesheet" href="{{ adminAsset('admin/lib/bootstrap-select/dist/css/bootstrap-select.min.css') }}">
-    <link rel="stylesheet" href="{{ adminAsset('admin/lib/overlayscrollbars/styles/overlayscrollbars.min.css') }}">
-    <link rel="stylesheet" href="{{ adminAsset('admin/lib/select2/dist/css/select2.min.css') }}"/>
+          href="{{ adminAsset('admins/lib/@eonasdan/tempus-dominus/dist/css/tempus-dominus.min.css') }}"/>
+    <link rel="stylesheet" href="{{ adminAsset('admins/lib/bootstrap-select/dist/css/bootstrap-select.min.css') }}">
+    <link rel="stylesheet" href="{{ adminAsset('admins/lib/overlayscrollbars/styles/overlayscrollbars.min.css') }}">
+    <link rel="stylesheet" href="{{ adminAsset('admins/lib/select2/dist/css/select2.min.css') }}"/>
     <link rel="stylesheet"
-          href="{{ adminAsset('admin/lib/select2-bootstrap-5-theme/dist/select2-bootstrap-5-theme.min.css') }}"/>
+          href="{{ adminAsset('admins/lib/select2-bootstrap-5-theme/dist/select2-bootstrap-5-theme.min.css') }}"/>
     @yield('css')
-    <link rel="stylesheet" href="{{ adminAsset('admin/css/bootstrap-admin.min.css') }}">
+    <link rel="stylesheet" href="{{ adminAsset('admins/css/bootstrap-admin.min.css') }}">
     @yield('mycss')
     <title>{{ config('admin.title') }}</title>
     <style>
@@ -44,19 +44,19 @@
 <a href="javaScript:" class="bsa-back-to-top"><i class='bi bi-arrow-up-short'></i></a>
 <!--回到顶部结束-->
 
-<script src="{{ adminAsset('admin/lib/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
-<script src="{{ adminAsset('admin/lib/jquery/dist/jquery.min.js') }}"></script>
-<script src="{{ adminAsset('admin/lib/@popperjs/core/dist/umd/popper.min.js') }}"></script>
-<script src="{{ adminAsset('admin/lib/@eonasdan/tempus-dominus/dist/js/tempus-dominus.min.js') }}"></script>
-<script src="{{ adminAsset('admin/lib/bootstrap-select/dist/js/bootstrap-select.min.js') }}"></script>
-<script src="{{ adminAsset('admin/lib/bootstrap-select/dist/js/i18n/defaults-zh_CN.min.js') }}"></script>
-<script src="{{ adminAsset('admin/lib/overlayscrollbars/browser/overlayscrollbars.browser.es6.min.js') }}"></script>
-<script src="{{ adminAsset('admin/lib/bootstrap-quicktab/dist/js/bootstrap-quicktab.min.js') }}"></script>
-<script src="{{ adminAsset('admin/lib/select2/dist/js/select2.min.js') }}"></script>
-<script src="{{ adminAsset('admin/lib/select2/dist/js/i18n/zh-CN.js') }}"></script>
+<script src="{{ adminAsset('admins/lib/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ adminAsset('admins/lib/jquery/dist/jquery.min.js') }}"></script>
+<script src="{{ adminAsset('admins/lib/@popperjs/core/dist/umd/popper.min.js') }}"></script>
+<script src="{{ adminAsset('admins/lib/@eonasdan/tempus-dominus/dist/js/tempus-dominus.min.js') }}"></script>
+<script src="{{ adminAsset('admins/lib/bootstrap-select/dist/js/bootstrap-select.min.js') }}"></script>
+<script src="{{ adminAsset('admins/lib/bootstrap-select/dist/js/i18n/defaults-zh_CN.min.js') }}"></script>
+<script src="{{ adminAsset('admins/lib/overlayscrollbars/browser/overlayscrollbars.browser.es6.min.js') }}"></script>
+<script src="{{ adminAsset('admins/lib/bootstrap-quicktab/dist/js/bootstrap-quicktab.min.js') }}"></script>
+<script src="{{ adminAsset('admins/lib/select2/dist/js/select2.min.js') }}"></script>
+<script src="{{ adminAsset('admins/lib/select2/dist/js/i18n/zh-CN.js') }}"></script>
 @yield('js')
-<script src="{{ adminAsset('admin/js/bootstrap-admin.min.js') }}"></script>
-<script src="{{ adminAsset('admin/js/app.js') }}"></script>
+<script src="{{ adminAsset('admins/js/bootstrap-admin.min.js') }}"></script>
+<script src="{{ adminAsset('admins/js/app.js') }}"></script>
 <script>
     $(document).ready(function () {
         $(".bsa-reset-btn").on("click", function () {
