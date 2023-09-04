@@ -40,7 +40,7 @@ CREATE TABLE `cl_admin_auths`  (
 -- Records of cl_admin_auths
 -- ----------------------------
 INSERT INTO `cl_admin_auths` VALUES (1, '#系统管理', '系统管理', 1, 1, 0, '', 99, 1689660985, 1689660985);
-INSERT INTO `cl_admin_auths` VALUES (2, '#员工管理', '员工管理', 1, 1, 1, '', 0, 1689660985, 1689660985);
+INSERT INTO `cl_admin_auths` VALUES (2, '#用户管理', '用户管理', 1, 1, 1, '', 0, 1689660985, 1689660985);
 INSERT INTO `cl_admin_auths` VALUES (3, '#角色管理', '角色管理', 1, 1, 1, '', 0, 1689660985, 1689660985);
 INSERT INTO `cl_admin_auths` VALUES (4, '#权限管理', '权限管理', 1, 1, 1, '', 0, 1689660985, 1689660985);
 INSERT INTO `cl_admin_auths` VALUES (5, '/admin/user/list', '用户列表', 1, 1, 2, '', 0, 1689660985, 1689660985);

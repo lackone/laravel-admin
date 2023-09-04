@@ -70,8 +70,8 @@
                         <div id="toolbar" class="d-flex flex-wrap gap-2 mb-2">
                             @if(checkAuth(session('admin_id'), authRoute('admin.user.save')))
                                 <a class="btn btn-light add-btn" href="javascript:"
-                                   onclick="parent.Quicktab.get('.qtab').addTab({title:'新增员工',url:'{{ route('admin.user.save') }}'})">
-                                    <i class="bi bi-plus"></i> 新增员工
+                                   onclick="parent.Quicktab.get('.qtab').addTab({title:'新增用户',url:'{{ route('admin.user.save') }}'})">
+                                    <i class="bi bi-plus"></i> 新增用户
                                 </a>
                             @endif
                         </div>
