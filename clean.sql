@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : 38.147.172.170
+ Source Server         : 127.0.0.1
  Source Server Type    : MySQL
- Source Server Version : 50740 (5.7.40-log)
- Source Host           : 38.147.172.170:3306
+ Source Server Version : 50726 (5.7.26)
+ Source Host           : 127.0.0.1:3306
  Source Schema         : clean
 
  Target Server Type    : MySQL
- Target Server Version : 50740 (5.7.40-log)
+ Target Server Version : 50726 (5.7.26)
  File Encoding         : 65001
 
- Date: 24/07/2023 09:25:33
+ Date: 04/09/2023 10:41:50
 */
 
 SET NAMES utf8mb4;
@@ -23,7 +23,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `cl_admin_auths`;
 CREATE TABLE `cl_admin_auths`  (
   `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID',
-  `name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '规则名',
+  `name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '规则名',
   `title` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '规则标题',
   `type` tinyint(1) NOT NULL DEFAULT 1 COMMENT '类型(1:菜单,2:按钮)',
   `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '状态(-1:禁用,1:启用)',
@@ -39,8 +39,8 @@ CREATE TABLE `cl_admin_auths`  (
 -- ----------------------------
 -- Records of cl_admin_auths
 -- ----------------------------
-INSERT INTO `cl_admin_auths` VALUES (1, '#系统管理', '系统管理', 1, 1, 0, '', 0, 1689660985, 1689660985);
-INSERT INTO `cl_admin_auths` VALUES (2, '#用户管理', '用户管理', 1, 1, 1, '', 0, 1689660985, 1689660985);
+INSERT INTO `cl_admin_auths` VALUES (1, '#系统管理', '系统管理', 1, 1, 0, '', 99, 1689660985, 1689660985);
+INSERT INTO `cl_admin_auths` VALUES (2, '#员工管理', '员工管理', 1, 1, 1, '', 0, 1689660985, 1689660985);
 INSERT INTO `cl_admin_auths` VALUES (3, '#角色管理', '角色管理', 1, 1, 1, '', 0, 1689660985, 1689660985);
 INSERT INTO `cl_admin_auths` VALUES (4, '#权限管理', '权限管理', 1, 1, 1, '', 0, 1689660985, 1689660985);
 INSERT INTO `cl_admin_auths` VALUES (5, '/admin/user/list', '用户列表', 1, 1, 2, '', 0, 1689660985, 1689660985);
@@ -55,7 +55,7 @@ INSERT INTO `cl_admin_auths` VALUES (13, '/admin/auth/save/*', '添加或修改�
 INSERT INTO `cl_admin_auths` VALUES (14, '/admin/auth/delete', '删除权限', 2, 1, 4, '', 0, 1689918376, 1689918376);
 INSERT INTO `cl_admin_auths` VALUES (15, '/admin/welcome', '欢迎页', 2, 1, 0, '', -10, 1689918625, 1689918625);
 INSERT INTO `cl_admin_auths` VALUES (16, '/admin/logout', '退出', 2, 1, 2, '', 0, 1689918663, 1689918663);
-INSERT INTO `cl_admin_auths` VALUES (17, '/admin/changePassword', '修改密码', 2, 1, 2, '', 0, 1689918713, 1689918713);
+INSERT INTO `cl_admin_auths` VALUES (17, '/admin/change_password', '修改密码', 2, 1, 2, '', 0, 1689918713, 1689918713);
 INSERT INTO `cl_admin_auths` VALUES (18, 'admin', '后台首页', 2, 1, 0, '', -99, 1689993187, 1689993187);
 
 -- ----------------------------
@@ -70,13 +70,12 @@ CREATE TABLE `cl_admin_role_assocs`  (
   `updated` int(11) NOT NULL DEFAULT 0 COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `uniq_role_admin`(`role_id`, `admin_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '后台用户角色关联表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '后台用户角色关联表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of cl_admin_role_assocs
 -- ----------------------------
 INSERT INTO `cl_admin_role_assocs` VALUES (1, 1, 1, 1689660985, 1689660985);
-INSERT INTO `cl_admin_role_assocs` VALUES (2, 2, 2, 1689993376, 1689993376);
 
 -- ----------------------------
 -- Table structure for cl_admin_roles
@@ -91,13 +90,12 @@ CREATE TABLE `cl_admin_roles`  (
   `created` int(11) NOT NULL DEFAULT 0 COMMENT '创建时间',
   `updated` int(11) NOT NULL DEFAULT 0 COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '后台用户角色表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '后台用户角色表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of cl_admin_roles
 -- ----------------------------
-INSERT INTO `cl_admin_roles` VALUES (1, '管理员', '1,2,5,8,9,10,3,6,11,12,4,7,13,14,15,16,17', 1, '管理员', 1689660985, 1689923908);
-INSERT INTO `cl_admin_roles` VALUES (2, 'test', '18,15', 1, 'test', 1689993365, 1689993365);
+INSERT INTO `cl_admin_roles` VALUES (1, '管理员', '18,15,26,27,31,33,34,57,28,30,32,56,55,29,35,36,19,20,22,23,52,21,24,25,53,37,38,39,40,41,42,43,54,44,45,51,1,2,5,8,9,10,16,17,3,6,11,12,4,7,13,14', 1, '系统角色请勿删除', 1689660985, 1692538378);
 
 -- ----------------------------
 -- Table structure for cl_admins
@@ -126,12 +124,11 @@ CREATE TABLE `cl_admins`  (
   `updated` int(11) NOT NULL DEFAULT 0 COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `uniq_account`(`account`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '后台用户表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '后台用户表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of cl_admins
 -- ----------------------------
-INSERT INTO `cl_admins` VALUES (1, 'admin', 'admin', 'admin', '/images/202307/23/XSZVf5Z92N8EiUHWecDBbJQ32X5LfkCq1xGVX51q.png', 0, 'OuWUGp', 'dba6e244d4350df734600e7d66b51eac', '1', '1', '1', '1', '111.181.87.203', 1690161250, 1, 1, '', '', 1689660985, 1690161250);
-INSERT INTO `cl_admins` VALUES (2, 'test', 'test', 'test', '/images/202307/23/Kl7nFPEnzjLuuEDgCCh08Gv6H4He7DOa12a0HzIN.png', 1, 'CECvbv', '517fae0fa33f14c962cda5bb2062d1cf', '2', '2', '2', '2', '127.0.0.1', 1689993385, -1, 1, '', '', 1689992734, 1690123551);
+INSERT INTO `cl_admins` VALUES (1, 'admin', 'admin', 'admin', '/images/202307/30/XkOze2FuVlQDMYoHfsJZByl1j421NbkC76seysV6.png', 0, 'daISFX', 'aafed593a0134edae0adbe8a1e4d79b5', '1', '1', '1', '1', '127.0.0.1', 1693217203, 1, 1, '', '', 1689660985, 1693217203);
 
 SET FOREIGN_KEY_CHECKS = 1;
