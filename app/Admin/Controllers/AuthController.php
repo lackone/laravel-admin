@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Admin\Services\RBAC;
+use App\Admin\Services\RBACService;
 use App\Models\AdminAuth;
 use Illuminate\Http\Request;
 
@@ -16,7 +16,7 @@ class AuthController extends Controller
     {
         $params = $request->all();
 
-        $auth_list = RBAC::allAuthList();
+        $auth_list = RBACService::allAuthList();
 
         return view('admin.auth.list', compact('auth_list', 'params'));
     }
@@ -32,7 +32,7 @@ class AuthController extends Controller
         if ($request->isMethod('POST')) {
             try {
                 if (!$params['name']) {
-                    return back()->withErrors(['规则名不能为空']);
+                    throw new \Exception('规则名不能为空');
                 }
 
                 if ($auth['id']) {
@@ -53,7 +53,7 @@ class AuthController extends Controller
             }
         }
 
-        $auth_tree = RBAC::allAuthTree();
+        $auth_tree = RBACService::allAuthTree();
 
         if (!$auth['id'] && $params['pid']) {
             $auth['pid'] = $params['pid'];

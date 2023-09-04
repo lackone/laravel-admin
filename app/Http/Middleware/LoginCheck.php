@@ -20,8 +20,6 @@ class LoginCheck
             return redirect(route('admin.login'));
         }
 
-        $request->offsetSet('admin_id', session('admin_id'));
-
         return $next($request);
     }
 }

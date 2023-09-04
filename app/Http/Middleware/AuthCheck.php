@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Admin\Services\RBAC;
+use App\Admin\Services\RBACService;
 use App\Models\Admin;
 use Closure;
 use Illuminate\Http\Request;
@@ -17,13 +17,13 @@ class AuthCheck
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $admin_id = $request->input('admin_id');
+        $admin_id = session('admin_id');
 
         $admin = Admin::find($admin_id);
 
         $auth = $request->decodedPath();
 
-        if ($admin['is_super'] != Admin::IS_SUPER_YES && !RBAC::checkAuth($admin_id, $auth)) {
+        if ($admin['is_super'] != Admin::IS_SUPER_YES && !RBACService::checkAuth($admin_id, $auth)) {
             if ($request->ajax()) {
                 return error("你没有该权限[{$auth}]，请联系管理员");
             }

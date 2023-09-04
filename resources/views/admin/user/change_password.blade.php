@@ -59,7 +59,7 @@
             //得到序列化数据
             $.ajax({
                 method: 'post',
-                url: '{{ route('admin.changePassword') }}',
+                url: '{{ route('admin.change_password') }}',
                 data: data,
             }).then(response => {
                 if (response.code === 200) {

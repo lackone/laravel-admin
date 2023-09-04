@@ -1,7 +1,8 @@
 <?php
+
 namespace App\Admin\Controllers;
 
-use App\Admin\Services\RBAC;
+use App\Admin\Services\RBACService;
 use App\Models\AdminRole;
 use Illuminate\Http\Request;
 
@@ -50,20 +51,24 @@ class RoleController extends Controller
         $params = $request->all();
 
         if ($request->isMethod('POST')) {
-            if (!$params['name']) {
-                return back()->withErrors(['角色名不能为空']);
-            }
+            try {
+                if (!$params['name']) {
+                    throw new \Exception('角色名不能为空');
+                }
 
-            if ($role['id']) {
-                $role->update($params);
-            } else {
-                AdminRole::create($params);
-            }
+                if ($role['id']) {
+                    $role->update($params);
+                } else {
+                    AdminRole::create($params);
+                }
 
-            return back()->with(['message' => '保存成功']);
+                return back()->with(['message' => '保存成功']);
+            } catch (\Exception $e) {
+                return back()->withErrors([$e->getMessage()]);
+            }
         }
 
-        $auth_list = RBAC::roleAuthList($role['id']);
+        $auth_list = RBACService::roleAuthList($role['id']);
 
         return view('admin.role.save', compact('role', 'auth_list'));
     }

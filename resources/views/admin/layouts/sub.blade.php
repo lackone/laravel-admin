@@ -2,7 +2,7 @@
 <html lang="{{ config('app.locale') }}">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" href="{{ adminAsset('admins/img/favicon-32x32.png') }}" sizes="32x32" type="image/png">
     <link rel="icon" href="{{ adminAsset('admins/img/favicon-16x16.png') }}" sizes="16x16" type="image/png">
@@ -26,8 +26,8 @@
     <title>{{ config('admin.title') }}</title>
     <style>
         .avatar {
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             overflow: hidden;
         }
@@ -58,53 +58,102 @@
 <script src="{{ adminAsset('admins/js/bootstrap-admin.min.js') }}"></script>
 <script src="{{ adminAsset('admins/js/app.js') }}"></script>
 <script>
+    //日期时间的翻译，由于该插件没有内置中文翻译，需要手动通过选项进行翻译
+    var td_zh = {
+        today: '回到今天',
+        clear: '清除选择',
+        close: '关闭选取器',
+        selectMonth: '选择月份',
+        previousMonth: '上个月',
+        nextMonth: '下个月',
+        selectYear: '选择年份',
+        previousYear: '上一年',
+        nextYear: '下一年',
+        selectDecade: '选择十年',
+        previousDecade: '上一个十年',
+        nextDecade: '下一个十年',
+        previousCentury: '上一个世纪',
+        nextCentury: '下一个世纪',
+        pickHour: '选取时间',
+        incrementHour: '增量小时',
+        decrementHour: '递减小时',
+        pickMinute: '选取分钟',
+        incrementMinute: '增量分钟',
+        decrementMinute: '递减分钟',
+        pickSecond: '选取秒',
+        incrementSecond: '增量秒',
+        decrementSecond: '递减秒',
+        toggleMeridiem: '切换上下午',
+        selectTime: '选择时间',
+        selectDate: '选择日期',
+    }
+
     $(document).ready(function () {
         $(".bsa-reset-btn").on("click", function () {
             $("form")[0].reset();
+            $("form input").each(function () {
+                $(this).val("");
+            });
+            $("form select").each(function () {
+                $(this).val("").trigger("change");
+            });
         })
 
         $(".bsa-querySearch-btn").on('click', function () {
             $("form")[0].submit();
         })
 
-        //==============================日期时间插件====================================
-        //日期时间的翻译，由于该插件没有内置中文翻译，需要手动通过选项进行翻译
-        let td_zh = {
-            today: '回到今天',
-            clear: '清除选择',
-            close: '关闭选取器',
-            selectMonth: '选择月份',
-            previousMonth: '上个月',
-            nextMonth: '下个月',
-            selectYear: '选择年份',
-            previousYear: '上一年',
-            nextYear: '下一年',
-            selectDecade: '选择十年',
-            previousDecade: '上一个十年',
-            nextDecade: '下一个十年',
-            previousCentury: '上一个世纪',
-            nextCentury: '下一个世纪',
-            pickHour: '选取时间',
-            incrementHour: '增量小时',
-            decrementHour: '递减小时',
-            pickMinute: '选取分钟',
-            incrementMinute: '增量分钟',
-            decrementMinute: '递减分钟',
-            pickSecond: '选取秒',
-            incrementSecond: '增量秒',
-            decrementSecond: '递减秒',
-            toggleMeridiem: '切换上下午',
-            selectTime: '选择时间',
-            selectDate: '选择日期',
-        }
+        $(".bsa-export-btn").on("click", function () {
+            let data = $("form").serialize();
+            location.href = $("form").attr("action") + '?export=1&' + data;
+            return false;
+        })
 
+        $(".import-file").on('change', function () {
+            let fd = new FormData();
+            let url = $(this).data("url");
+            fd.append('file', $(this)[0].files[0]);
+            $.modal({
+                body: '确定要导入?',
+                ok: function () {
+                    $.ajax({
+                        url: url,
+                        method: 'post',
+                        contentType: false,
+                        processData: false,
+                        data: fd
+                    }).then(response => {
+                        if (response.code === 200) {
+                            $.toasts({
+                                type: 'success',
+                                content: '导入成功',
+                                onHidden: function () {
+                                    parent.Quicktab.get('.qtab').refreshActiveTab();
+                                }
+                            })
+                        } else {
+                            $.toasts({
+                                type: 'danger',
+                                content: response.msg,
+                            });
+                        }
+                    });
+                }
+            })
+        })
+
+        //==============================日期时间插件====================================
         //自定义日期格式插件
         if (document.getElementById('start_time')) {
+            let format = 'yyyy-MM-dd HH:mm:ss';
+            if (document.getElementById('start_time').getAttribute('format')) {
+                format = document.getElementById('start_time').getAttribute('format');
+            }
             var td6 = new tempusDominus.TempusDominus(document.getElementById('start_time'), {
                 //本地化控制
                 localization: {
                     ...td_zh,//展开语法
-                    format: 'yyyy-MM-dd HH:mm:ss',
+                    format: format,
                 },
                 //布局控制
                 display: {
@@ -150,11 +199,15 @@
             });
         }
         if (document.getElementById('end_time')) {
+            let format = 'yyyy-MM-dd HH:mm:ss';
+            if (document.getElementById('end_time').getAttribute('format')) {
+                format = document.getElementById('end_time').getAttribute('format');
+            }
             var td7 = new tempusDominus.TempusDominus(document.getElementById('end_time'), {
                 //本地化控制
                 localization: {
                     ...td_zh,//展开语法
-                    format: 'yyyy-MM-dd HH:mm:ss',
+                    format: format,
                     //是否使用24小时制,比如3.15分会变成15.15
                     // hourCycle: 'h24'
                 },

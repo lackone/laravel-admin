@@ -2,8 +2,8 @@
 
 namespace App\Admin\Controllers;
 
-use App\Admin\Services\RBAC;
-use App\Admin\Services\User;
+use App\Admin\Services\RBACService;
+use App\Admin\Services\UserService;
 use App\Models\AdminAuth;
 use Illuminate\Http\Request;
 
@@ -14,10 +14,10 @@ class IndexController extends Controller
      */
     public function index(Request $request)
     {
-        $admin_id = $request->input('admin_id');
+        $admin_id = session('admin_id');
 
-        $menu_list = RBAC::authTreeById($admin_id, AdminAuth::TYPE_MENU);
-        $role_name = RBAC::roleNameById($admin_id);
+        $menu_list = RBACService::authTreeById($admin_id, AdminAuth::TYPE_MENU);
+        $role_name = RBACService::roleNameById($admin_id);
 
         return view('admin.index.index', compact('menu_list', 'role_name'));
     }
@@ -40,10 +40,10 @@ class IndexController extends Controller
         if ($request->ajax()) {
             try {
                 if (!$params['account'] || !$params['password']) {
-                    return error('账号和密码不能为空');
+                    throw new \Exception('账号和密码不能为空');
                 }
 
-                $res = User::login($params['account'], $params['password']);
+                $res = UserService::login($params['account'], $params['password']);
 
                 return success($res);
             } catch (\Exception $e) {

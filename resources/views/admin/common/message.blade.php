@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-lg-12">
+    <div class="col col-12">
         @if(session('message'))
             <div class="alert alert-success d-flex align-items-center alert-dismissible fade show" role="alert">
                 <i class="mdi mdi-check-circle me-2"></i>

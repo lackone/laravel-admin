@@ -54,4 +54,24 @@ class BaseModel extends Model
     {
         return $this->where($where)->pluck($value, $key)->toArray();
     }
+
+    /**
+     * 获取指定ID列表
+     * @param $ids
+     */
+    protected function listByIds($ids = [], $key = 'id')
+    {
+        $ids = array_unique(array_filter($ids));
+        if (!$ids) {
+            return [];
+        }
+        $list = $this->whereIn($key, $ids)->get();
+        $data = [];
+        if ($list) {
+            foreach ($list as $value) {
+                $data[$value[$key]] = $value;
+            }
+        }
+        return $data;
+    }
 }

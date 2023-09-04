@@ -1,15 +1,15 @@
 @if ($paginator->hasPages())
     <div class="fixed-table-pagination">
         <div class="float-left pagination-detail">
-                <span class="pagination-info">
-                    本页显示第 {{ (($paginator->currentPage() - 1) * $paginator->perPage()) + 1 }} -
-                    @if ($paginator->currentPage() == $paginator->lastPage())
-                        {{ $paginator->total() }}
-                    @else
-                        {{ ($paginator->currentPage()) * $paginator->perPage() }}
-                    @endif
-                    ，总共 {{ $paginator->total() }} 条记录
-                </span>
+            <span class="pagination-info">
+                本页显示第 {{ (($paginator->currentPage() - 1) * $paginator->perPage()) + 1 }} -
+                @if ($paginator->currentPage() == $paginator->lastPage())
+                    {{ $paginator->total() }}
+                @else
+                    {{ ($paginator->currentPage()) * $paginator->perPage() }}
+                @endif
+                ，总共 {{ $paginator->total() }} 条记录
+            </span>
         </div>
         <div class="float-right pagination">
             <ul class="pagination pagination-mini">
@@ -42,6 +42,20 @@
                     <li class="page-item disabled"><span class="page-link">下一页</span></li>
                 @endif
             </ul>
+        </div>
+    </div>
+@else
+    <div class="fixed-table-pagination">
+        <div class="float-left pagination-detail">
+            <span class="pagination-info">
+                本页显示第 {{ (($paginator->currentPage() - 1) * $paginator->perPage()) + 1 }} -
+                @if ($paginator->currentPage() == $paginator->lastPage())
+                    {{ $paginator->total() }}
+                @else
+                    {{ ($paginator->currentPage()) * $paginator->perPage() }}
+                @endif
+                ，总共 {{ $paginator->total() }} 条记录
+            </span>
         </div>
     </div>
 @endif

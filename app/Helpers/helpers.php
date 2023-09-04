@@ -161,7 +161,7 @@ if (!function_exists('checkAuth')) {
      */
     function checkAuth($admin_id, $auth)
     {
-        return \App\Admin\Services\RBAC::checkAuth($admin_id, $auth);
+        return \App\Admin\Services\RBACService::checkAuth($admin_id, $auth);
     }
 }
 
@@ -188,5 +188,35 @@ if (!function_exists('jsonEncode')) {
     function jsonEncode($data)
     {
         return json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    }
+}
+
+if (!function_exists('getWeek')) {
+    /**
+     * 获取指定时间所在的周一与周日
+     * @param $data
+     * @return array
+     */
+    function getWeek($today = 0)
+    {
+        !$today && $today = date('Y-m-d');
+        return [
+            date('Y-m-d', strtotime('monday this week', strtotime($today))),
+            date('Y-m-d', strtotime('sunday this week', strtotime($today)))
+        ];
+    }
+}
+
+if (!function_exists('getImportData')) {
+    /**
+     * 获取导入文件数据
+     * @param $path 路径
+     * @return array
+     */
+    function getImportData($path)
+    {
+        $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($path);
+        $sheet = $spreadsheet->getActiveSheet();
+        return $sheet->toArray();
     }
 }

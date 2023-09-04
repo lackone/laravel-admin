@@ -70,8 +70,8 @@
                         <div id="toolbar" class="d-flex flex-wrap gap-2 mb-2">
                             @if(checkAuth(session('admin_id'), authRoute('admin.user.save')))
                                 <a class="btn btn-light add-btn" href="javascript:"
-                                   onclick="parent.Quicktab.get('.qtab').addTab({title:'添加用户',url:'{{ route('admin.user.save') }}'})">
-                                    <i class="bi bi-plus"></i> 新增
+                                   onclick="parent.Quicktab.get('.qtab').addTab({title:'新增员工',url:'{{ route('admin.user.save') }}'})">
+                                    <i class="bi bi-plus"></i> 新增员工
                                 </a>
                             @endif
                         </div>
@@ -134,6 +134,9 @@
                                         {{ $value['real_name'] }}
                                     </td>
                                     <td>
+                                        @if($value['is_super'] == \App\Models\Admin::IS_SUPER_YES)
+                                            超级管理员<br>
+                                        @endif
                                         @if($value['roles'])
                                             @foreach($value['roles'] as $role)
                                                 {{ $role['name'] }}<br>

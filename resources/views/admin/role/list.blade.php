@@ -9,7 +9,7 @@
                     <div class="row">
                         <label for="name" class="col-sm-auto col-form-label">名称</label>
                         <div class="col">
-                            <input type="text" class="form-control" id="account" name="name"
+                            <input type="text" class="form-control" id="name" name="name"
                                    value="{{ $params['name'] }}">
                         </div>
                     </div>
@@ -61,8 +61,8 @@
                         <div id="toolbar" class="d-flex flex-wrap gap-2 mb-2">
                             @if(checkAuth(session('admin_id'), authRoute('admin.role.save')))
                                 <a class="btn btn-light add-btn" href="javascript:"
-                                   onclick="parent.Quicktab.get('.qtab').addTab({title:'添加角色',url:'{{ route('admin.role.save') }}'})">
-                                    <i class="bi bi-plus"></i> 新增
+                                   onclick="parent.Quicktab.get('.qtab').addTab({title:'新增角色',url:'{{ route('admin.role.save') }}'})">
+                                    <i class="bi bi-plus"></i> 新增角色
                                 </a>
                             @endif
                         </div>

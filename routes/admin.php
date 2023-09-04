@@ -8,6 +8,9 @@ Route::group([
     'namespace' => config('admin.route.namespace'),
     'middleware' => ['web'],
 ], function () {
+    //test
+    Route::any('/test', 'IndexController@test')->name('test');
+
     //登录
     Route::any('/login', 'IndexController@login')->name('login');
 
@@ -30,7 +33,7 @@ Route::group([
         Route::any('/welcome', 'IndexController@welcome')->name('welcome');
 
         //修改密码
-        Route::any('/changePassword', 'UserController@changePassword')->name('changePassword');
+        Route::any('/changePassword', 'UserController@changePassword')->name('change_password');
 
         //用户列表
         Route::any('/user/list', 'UserController@list')->name('user.list');

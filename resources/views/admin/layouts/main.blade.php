@@ -2,7 +2,7 @@
 <html lang="{{ config('app.locale') }}">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" href="{{ adminAsset('admins/img/favicon-32x32.png') }}" sizes="32x32" type="image/png">
     <link rel="icon" href="{{ adminAsset('admins/img/favicon-16x16.png') }}" sizes="16x16" type="image/png">
@@ -42,10 +42,6 @@
 @yield('myjs')
 <script>
     $(document).ready(function () {
-        Quicktab.get(".qtab")._option.onTabActivated = function (e) {
-            e.target.refreshActiveTab();
-        }
-
         //退出登录
         $(document).on('click', '.bsa-logout', function (e) {
             e.preventDefault();
@@ -71,6 +67,16 @@
                 }
             })
         });
+
+        var time = setInterval(function () {
+            if (Quicktab.get('.qtab')) {
+                Quicktab.get('.qtab')._option.onTabActivated = function (e) {
+                    e.target.refreshActiveTab();
+                }
+                clearInterval(time);
+                console.log('clearInterval');
+            }
+        }, 1000);
     });
 </script>
 </body>

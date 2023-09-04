@@ -2,8 +2,8 @@
 
 namespace App\Admin\Controllers;
 
-use App\Admin\Services\RBAC;
-use App\Admin\Services\User;
+use App\Admin\Services\RBACService;
+use App\Admin\Services\UserService;
 use App\Models\Admin;
 use App\Models\AdminRole;
 use App\Models\AdminRoleAssoc;
@@ -67,14 +67,14 @@ class UserController extends Controller
                 if ($admin['status'] == Admin::STATUS_DISABLE) {
                     throw new \Exception('账号禁用，禁止登录');
                 }
-                if (User::makePassword($admin['salt'], $params['password']) != $admin['password']) {
+                if (UserService::makePassword($admin['salt'], $params['password']) != $admin['password']) {
                     throw new \Exception('旧密码不正确');
                 }
                 if ($params['new_password'] != $params['again_new_password']) {
                     throw new \Exception('两次新密码不一致');
                 }
 
-                User::changePassword($admin['id'], $params['new_password']);
+                UserService::changePassword($admin['id'], $params['new_password']);
 
                 return success();
             } catch (\Exception $e) {
@@ -94,34 +94,38 @@ class UserController extends Controller
         $params = $request->all();
 
         if ($request->isMethod('POST')) {
-            if (!$params['account']) {
-                return back()->withErrors(['账号不能为空']);
-            }
-
-            if ($params['password']) {
-                $params['salt'] = Str::random(6);
-                $params['password'] = User::makePassword($params['salt'], $params['password']);
-            } else {
-                unset($params['password']);
-            }
-
-            if ($admin['id']) {
-                if (Admin::where('account', $params['account'])->where('id', '<>', $admin['id'])->first()) {
-                    return back()->withErrors(['已经存在相同账号']);
+            try {
+                if (!$params['account']) {
+                    throw new \Exception('账号不能为空');
                 }
 
-                $admin->update($params);
-            } else {
-                if (Admin::where('account', $params['account'])->first()) {
-                    return back()->withErrors(['已经存在相同账号']);
+                if ($params['password']) {
+                    $params['salt'] = Str::random(6);
+                    $params['password'] = UserService::makePassword($params['salt'], $params['password']);
+                } else {
+                    unset($params['password']);
                 }
-                if (!$params['password']) {
-                    return back()->withErrors(['密码不能为空']);
-                }
-                Admin::create($params);
-            }
 
-            return back()->with(['message' => '保存成功']);
+                if ($admin['id']) {
+                    if (Admin::where('account', $params['account'])->where('id', '<>', $admin['id'])->first()) {
+                        throw new \Exception('已经存在相同账号');
+                    }
+
+                    $admin->update($params);
+                } else {
+                    if (Admin::where('account', $params['account'])->first()) {
+                        throw new \Exception('已经存在相同账号');
+                    }
+                    if (!$params['password']) {
+                        throw new \Exception('密码不能为空');
+                    }
+                    Admin::create($params);
+                }
+
+                return back()->with(['message' => '保存成功']);
+            } catch (\Exception $e) {
+                return back()->withErrors([$e->getMessage()]);
+            }
         }
 
         return view('admin.user.save', compact('admin'));
@@ -136,27 +140,31 @@ class UserController extends Controller
         $params = $request->all();
 
         if ($request->isMethod('POST')) {
-            if (!$admin['id']) {
-                return back()->withErrors(['请选择用户']);
-            }
-
-            AdminRoleAssoc::where('admin_id', $admin['id'])->delete();
-
-            $insert = [];
-            if ($params['role_ids']) {
-                $now = time();
-                foreach ($params['role_ids'] as $role_id) {
-                    $insert[] = ['admin_id' => $admin['id'], 'role_id' => $role_id, 'created' => $now, 'updated' => $now];
+            try {
+                if (!$admin['id']) {
+                    throw new \Exception('请选择用户');
                 }
-            }
-            $insert && AdminRoleAssoc::insert($insert);
 
-            return back()->with(['message' => '分配成功']);
+                AdminRoleAssoc::where('admin_id', $admin['id'])->delete();
+
+                $insert = [];
+                if ($params['role_ids']) {
+                    $now = time();
+                    foreach ($params['role_ids'] as $role_id) {
+                        $insert[] = ['admin_id' => $admin['id'], 'role_id' => $role_id, 'created' => $now, 'updated' => $now];
+                    }
+                }
+                $insert && AdminRoleAssoc::insert($insert);
+
+                return back()->with(['message' => '分配成功']);
+            } catch (\Exception $e) {
+                return back()->withErrors([$e->getMessage()]);
+            }
         }
 
         $role_list = AdminRole::optionList('id', 'name', [['status', '=', AdminRole::STATUS_ENABLE]]);
 
-        $role_ids = RBAC::roleIdsById($admin['id']);
+        $role_ids = RBACService::roleIdsById($admin['id']);
 
         return view('admin.user.set_role', compact('admin', 'role_list', 'role_ids'));
     }
